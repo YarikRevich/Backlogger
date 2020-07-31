@@ -1,0 +1,118 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block title %}
+Projects
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/ProjectPage10.css' %}">
+{% endblock link %}
+
+
+{% block js %}
+<script src="{% static 'js/ProjectPage14.js' %}"></script>
+{% endblock js %}
+
+
+{% block content %}
+<div  id="wrapper" >
+<div style="float:right">
+<nav class="nav flex-column">
+	{% if entries.object_list %}
+
+	<a style="background-color:#ffffff;border: 2px solid #000000;border-radius:5px 0px 0px 0px" onclick="show_plan_page()"class="nav-link" href="#">Plan</a>
+	<a style="background-color:#ffffff;border: 2px solid #000000;border-radius:0px 0px 0px 5px" onclick="show_add_page()" class="nav-link" href="#">Add entry</a>
+	
+	{% else %}
+	<a style="background-color:#ffffff;border: 2px solid #000000;border-radius:5px 0px 0px 5px" onclick="show_plan_page()" class="nav-link" href="#">Plan</a>
+	{% endif %}
+</nav>
+</div>
+<div id="back-image-project">
+	<a href={% url "Home" %}><img src="https://img.icons8.com/ios/70/000000/return.png"/></a>
+</div>
+<div id="back-image" hidden="true">
+	<a onclick="show_add_page()"><img src="https://img.icons8.com/ios/70/000000/return.png"/></a>
+</div>
+<div class="main">
+    <div class="add-entry-page" id="entry-page" hidden="true">
+    
+	<form method="POST" class="form-project" action="{% url 'AddEntry' pk=pk %}">
+      {% csrf_token %}
+      <div class="form-group" style="margin-top:6.5em;margin-left:5em">
+        Write the name of your entry
+        {{form_entry.name_of_the_entry}}
+      </div>
+      <div class="form-group" style="margin-left:5em">
+        Write a description
+        {{form_entry.description}}
+      </div>
+      <button style="margin-left:5em" type="submit" class="btn btn-primary mb-2">Confirm</button>
+      
+    </form>
+	</div>
+	<div class="plan_page" id="plan_page" hidden>
+	<img style="float:right" onclick="show_plan_page()" class="image-close" src="https://img.icons8.com/color/25/000000/cancel--v1.png"/>
+	<form style="width:48em;height:35em" method="POST" action="{% url "AddPlan" pk=pk %}">
+	{% csrf_token %}
+	{{form_plan.project_plan}}
+	<button style="margin-top:35em;margin-left:21.5em" id="confirm_button" type="submit" class="btn btn-success" hidden="true">Confirm</button>
+	</form>
+	
+	<button style="margin-left:22.5em" id="edit_button" onclick="edit_plan()" type="button" class="btn btn-primary">Edit</button>
+	</div>
+	{% if entries.object_list %}
+    <div class="broker" id="broker">
+    {% for entry in entries.object_list %}
+        <div id="cards" class="card text-center">
+            <div style="font-family: 'Do Hyeon', sans-serif;height:2.5em;text-align:left" class="card-header">
+                {{entry.name_of_the_entry}}
+                <a style="float:right;margin-top:-.3em" href={% url 'DeleteEntry' pk=entry.pk project_id=pk page_to_return=entries.number %}><img class="image-close" src="https://img.icons8.com/color/25/000000/cancel--v1.png"/></a>
+            </div>
+            <div style="font-family: 'Roboto Mono', monospace;text-align:left;white-space:pre-wrap;overflow:auto" class="card-body">{{entry.description}}</div>
+            <div style="height:2.5em" class="card-footer text-muted">
+                {{entry.time|date:"d.m.Y"}}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+	{% if entries.paginator.count > 4 %}
+    <div id="paginator">
+    	<nav aria-label="Page navigation example">
+  			<ul class="pagination justify-content-center">
+    			{% if entries.has_previous %}
+    			<li class="page-item">
+      				<a class="page-link" href={% url "Project" pk=pk page=entries.previous_page_number%} tabindex="1">Previous</a>
+    			</li>
+    			{% endif %}
+    			{% for page_num in entries.paginator.page_range %}
+    			{% if page_num == entries.number %}
+    			<li class="page-item active" aria-current="page">
+      				<span class="page-link">
+        				{{page_num}}
+        			<span class="sr-only">{{page_num}}</span>
+      				</span>
+    			</li>
+    			{% elif page_num < entries.number|add:4 and page_num > entries.number|add:-4 %}
+    				<li class="page-item"><a class="page-link" href={% url "Project" pk=pk page=page_num%}>{{page_num}}</a></li>
+    			{% endif %}     
+    			{% endfor %}
+    			{% if entries.has_next %}
+    			<li class="page-item">
+      				<a class="page-link" href={% url "Project" pk=pk page=entries.next_page_number%}>Next</a>
+    			</li>
+    			{% endif %}
+  			</ul>
+		</nav>
+	</div>
+	{% endif %}
+	{% else %}
+	<div class="empty" id="emptyy">
+		<h1 class="empty-text">You have no entries</h1>
+		<button onclick="show_add_page()" type="button" class="btn btn-primary">Add your first entry</button>
+	</div>
+	{% endif %}
+</div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,186 @@
+
+.wrapper {
+    background-color: rgb(0, 0, 0,0.4);
+    min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    
+}
+
+
+
+
+.main {
+    background-color:rgb(0, 0, 0,0.5);
+    border-radius: 10px;
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+    
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    z-index: 20;
+    width: 60em;
+    height: 56em;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.broker{
+    display: flex;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 50em;
+    flex-direction: column;
+    
+    
+}
+
+
+
+#cards {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index:40;
+    width:50em;
+    height:11em;
+    border: 5px solid rgb(0, 0, 0,0.8);
+    
+    
+}
+
+
+.image-close {
+    transition: all .5s;
+}
+
+.image-close:hover {
+    transform: rotateZ(360deg);
+}
+
+
+
+.add-arrow {
+    float: right;
+    margin-top: 17em;
+    
+}
+
+.add-text {
+    font-size: 20px;
+    position: absolute;
+    top:43%;
+    left:93%;
+    bottom:0;
+    right:0;
+    margin: auto;
+}
+
+
+.bundle > .a{
+    display: inline;
+}
+
+.bundle > .b {
+    display: none;
+}
+
+
+.bundle:hover .a{
+    display: none;
+}
+
+.bundle:hover .b {
+    display: inline;
+}
+
+.add-arrow {
+   margin-top: 12em;
+}
+
+
+.add-entry-page {
+    position: absolute;
+    z-index: 100;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left:0;
+    margin: auto;
+    border: 5px solid rgb(0,0,0,0.8);
+    background-color: #e3d6d5;
+    height: 40em;
+    width: 40em;
+    border-radius: 15px;
+    
+}
+
+
+.form-project{
+    
+    height: 30em;
+    width: 35em;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    margin-top: 5em;
+    background-color: #f2f2f2;
+    border: 3.5px solid rgb(0,0,0,0.4);
+    border-radius: 10px;
+    
+}
+
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50em;
+}
+
+.empty-text{
+    font-family: 'Modak', cursive;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+#back-image{
+    
+    margin-left:2em;
+    margin-top:2em;
+    width:6em;
+    
+    transition: all .7s;
+}
+
+#back-image:hover{
+    transform: rotateZ(720deg);
+}
+
+
+#back-image-project {
+    margin-left:2em;
+    margin-top:2em;
+    width:6em;
+    
+    transition: all .7s;
+}
+
+
+#back-image-project:hover{
+    transform: rotateZ(720deg);
+}

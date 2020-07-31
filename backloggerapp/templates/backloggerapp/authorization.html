@@ -1,0 +1,90 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+{% block js%}
+<script src="{% static 'js/Authorization1.js' %}"></script>
+{% endblock js%}
+
+{% block title %}
+Authorization
+{% endblock title %}
+   
+{% block link %}
+<link rel="stylesheet" href="{% static "css/Authorization_file_css_3.css" %}">
+{% endblock link %}
+
+{% block content %}
+<div class="hat">
+    <div class="logo">
+        <h2 class="text">BackLogger</h2>
+    </div>
+
+    <div class="welcome">
+        <div class="welcometext">
+            Hello! Welcome on our site   
+        </div>
+    </div>
+</div>
+
+<div class="alerts">
+    <div class="alert">
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <div class="alert alert-success" role="alert">
+                    {{message}}
+                </div>
+            {% elif message.tags == "info" %}
+                <div class="alert alert-primary" role="alert">
+                    {{message}}<a href="{% url "Home" %}" class="alert-link"><br/>the page</a>.
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
+
+
+<div class="main">
+        
+        <div class="form">
+            <form action="{%url "Authorization"%}" method="POST">
+            {% csrf_token %}
+            {% if form.errors %}
+                {% if form.errors.username %}
+                    <div>{{form.errors.username}}</div>
+                {% else %}
+                    <div>{{form.errors.password}}</div>
+                {% endif %}
+            {% endif %}
+            
+        
+            <span style="font-family: 'Roboto', sans-serif">Email:</span> {{form.username}}
+            <span style="font-family: 'Roboto', sans-serif">Password:</span>{{form.password}}
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <div class="form-group g-recaptcha" style="margin-top:.6em" data-sitekey="6Ldj56sZAAAAAB1e48T0oVivFnAdiD0aTGQVoBUN"></div>
+            <div style="display:flex;justify-content:center;align-items:center">
+                <a style="margin-top:-1em;color:#ffffff" class="nav-link" href="{% url "Regestration" %}">Yet does not have an account?</a>
+            </div>
+            <div class="form-button" style="display:flex;margin-top:-1em;align-items:center;justify-content:center">
+                <button type="submit" class="own-button">Confirm</button>
+            </div>
+            </form>
+        </div>
+</div>
+
+<div class="footer">
+    <div class="main-part">
+        <div class="main-text" onclick="ChangeClass()" id="main-text">
+       
+        <img src="https://icons.iconarchive.com/icons/icons8/ios7/128/Arrows-Up-3-icon.png">
+
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

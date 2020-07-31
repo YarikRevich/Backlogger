@@ -1,0 +1,155 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load filtersandtags %}
+{% block title %}
+Homepage
+{% endblock title %}
+
+{% block js %}
+<script src="{% static 'js/Menu9.js' %}"></script>
+{% endblock js %}
+
+
+{% block link %}
+<link rel="stylesheet" href="{% static "css/Homepage16.css" %}">
+{% endblock link %}
+
+
+
+
+{% block content %}
+
+<div class="hat">
+    <div class="logo">
+        <h2 class="text">BackLogger</h2>
+        
+    </div>
+    <div class="user-actions">
+        <div class="settings">
+            <div class="settings-button">
+                <div class="btn-group dropleft">
+                    <button style="background-color:rgb(0,0,0,0);border:0px" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {% if avatar %}
+                    <img style="border-radius:20%" src={% media_path avatar|thumbnail_url:"default" %}>
+                    {% else %}
+                    <img src="https://icons.iconarchive.com/icons/bokehlicia/captiva/48/user-icon.png">
+                    {% endif %}
+                    </button>
+                    <div class="dropdown-menu">
+                        <p style="text-align:center">Username: {{user}}</p>
+                        
+                        <button onclick="menu('{{user}}','{{email}}','{{pk}}')" style="text-align:center" class="dropdown-item" type="button">Settings</button>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url "LogoutUser" %}"><button type="button" class="logout-button">Logout</button></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alerts" id="alerts">
+    <div class="alert" style="margin-bottom:2em">
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <div  class="alert alert-success" role="alert" id="alert-message">
+                    {{message}}
+                </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert" id="alert-message">
+                    {{message}}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </div>
+</div>
+
+
+<div class="add-project-page" id="add-project-page" hidden="true">
+<img onclick="show_add_project()" style="float:right" class="image-close" src="https://img.icons8.com/color/30/000000/cancel--v1.png"/>
+    <div class="add-project-form">
+        <form method="post"  action="{% url "AddProject" %}">
+            {% csrf_token %}
+            {{project_form.as_p}}
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="main">
+    <div class="arrow-image">
+    </div>
+    <div class="user-interface" id="text-main">
+        <div class="project-title" id="main-image">
+        Your projects
+        <br/><img src="https://icons.iconarchive.com/icons/icons8/ios7/48/Arrows-Down-4-icon.png">
+        </div>
+        {% for proj in projects %}
+            <div style="top:{% x %};left:{% y %}" class="btn-group">
+                <a href="{% url "Project" pk=proj.pk page=1 %}" ><button type="button" class="btn btn-light">{{proj.name}}</button></a>
+                <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    
+                    <a class="dropdown-item" href={% get_pdf proj.pk %} download><button type="button" style="top:0;left:-4.5%;right:0;bottom:0;margin:auto" class="btn btn-primary">Download PDF</button></a>
+                    <a class="dropdown-item" href="{% url "DeleteProject" pk=proj.pk %}"><button style="top:0;left:20%;right:0;bottom:0;margin:auto" type="button" class="btn btn-danger">Delete</button></a>
+    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="settings-menu-changed" id="menu" hidden="true">
+        <button onclick='close_menu()' id='close-button' type='button' style='border:0px;border-radius:5px;height:2.5em;width:25em;background-color:rgb(0,0,0,0.5)' ><img style="float:right" onclick="show_plan_page()" class="image-close" src="https://img.icons8.com/color/25/000000/cancel--v1.png"/></button>
+        <div style='height:27.5em' class='row'>
+            <div style='width:17em;border-right-width:4px;border-right-style:solid;border-right:color:rgb(0,0,0,0.5)' class='col-4'>
+                <div class='list-group' style='width:7.7em;text-align:center' id='list-tab' role='tablist'>
+                    <a class='list-group-item list-group-item-action active' id='list-home-list' data-toggle='list' href='#list-home' role='tab' aria-controls='home'>Profile</a>
+                    <a class='list-group-item list-group-item-action' id='list-connections-list' data-toggle='list' href='#list-connections' role='tab' aria-controls='connections'>Connections</a>
+                </div>
+            </div>
+            <div class='col-8'>
+                <div style='width:8em' class='tab-content' id='nav-tabContent'>
+                    <div style="width:16em;left:-6%;margin-top:2em;color:#ffffff" class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                        <div style="justify-content:center;align-content:center">
+                            User:{{user}}<br/>Email:{{email}}
+                        </div><br/><br/><br/>
+                        <div>
+                        </div>
+                        Avatar:<br/><br/>Delete avatar:
+                        <form method="delete" action="{{pk}}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form><br/>Set avatar:
+                        <form method="post" action="{% url "AddImage" %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="image" accept="image/*" required_id="id_image">
+                            <button style="height:2em;width:6em" type="submit" class="btn btn-success">Set</button>
+                        </form>
+                    </div>
+                        <div class="tab-pane fade" id="list-connections" role="tabpanel" aria-labelledby="list-connections-list">...</div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="footer">
+    <div onclick="show_add_project()" class="add-button" id="add-button">
+        <a><img  class="add-button-image" src="https://icons.iconarchive.com/icons/graphicloads/100-flat-2/64/add-icon.png"></a>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

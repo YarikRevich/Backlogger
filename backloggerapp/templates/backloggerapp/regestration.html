@@ -1,0 +1,51 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block title %}
+    Regestration
+{% endblock title %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/Regestration.css' %}">
+{% endblock link %}
+
+
+{% block content %}
+<div class="hat">
+    <div class="logo">
+        <h2 class="text">BackLogger</h2>
+    </div>
+
+    <div class="welcome">
+        <div class="welcometext">
+            Hello! Welcome on our site   
+        </div>
+    </div>
+</div>
+
+
+<div class="main">
+        
+        <h2 class="create-acc">Create your accaunt</h2>
+        <div class="form">
+        <form style="margin-top:-2em" method="POST" action="{% url "Regestration" %}">
+        {% csrf_token %}
+        <div>
+            Username:{{form.username}}
+        </div>
+        <div style="margin-top:1em">
+            Email:{{form.email}}
+        </div>
+        <div style="margin-top:1em">
+            Your password:{{form.password1}}
+        </div>
+        <div style="margin-top:1em">
+            Confirming of the password:{{form.password2}}
+        </div>
+        <button type="submit" style="margin-top:1.4em" class="btn btn-primary">Confirm</button>
+        </form>
+        </div>
+</div>
+
+
+{% endblock content %}
+

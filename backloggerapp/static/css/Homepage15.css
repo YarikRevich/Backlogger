@@ -1,0 +1,231 @@
+*{
+    position: relative;
+}
+
+
+
+.hat {
+    display: flex;
+    height: 5em;
+    
+    
+}
+
+.hat > .logo {
+    
+    flex: 12;
+    font-family: 'Notable', sans-serif; 
+    perspective: 1100px;
+    padding: 1em 1em 1em 1.4em;
+}
+
+
+
+.hat > .logo > .text {
+    transition: transform 1.5s;
+    
+    width: 9em;
+}
+
+.hat > .logo > .text:hover {
+    transform: rotateY(360deg);
+}
+
+.hat > .user-actions {
+    flex: 1;
+    display: flex; 
+    
+}
+
+
+
+
+
+.hat > .user-actions > .settings {
+    flex:1;
+    display: flex;
+    margin-top: 1em;
+    
+}
+
+
+
+.hat > .user-actions > .settings > .settings-button{
+    flex:1;
+    
+}
+
+
+.logout-button,.logout-button:visited,.logout-button:checked,.logout-button:hover {
+    border: 0px;
+    border-radius: 5px;
+    background-color: crimson;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    align-self: center;
+    height: 3em;
+    width: 15.5em;
+    outline: none;
+
+}
+
+
+.alerts {
+    
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4em;
+    
+    
+}
+
+.alerts > .alert {
+    height: 2em;
+    width: 30em;
+    max-width: 100%;
+    max-height: 100%;
+    text-align: center;
+    align-self: center;
+    
+}
+
+
+.add-project-page{
+    position: absolute;
+    z-index: 1000;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    color:#ffffff;
+    background-color: rgb(0, 0, 0,0.5);
+    height: 30em;
+    width: 40em;
+    border-radius: 10px;
+    border: 4px solid rgb(0,0,0,0.4)
+}
+
+.add-project-form{
+    
+    height: 25em;
+    width: 40em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-close {
+    transition: all .5s;
+}
+
+.image-close:hover {
+    transform: rotateZ(360deg);
+}
+
+.main {
+   
+    
+    display: flex;
+    
+    height: 35em;
+    
+    
+
+    
+}
+
+.main > .user-interface {
+    height: 32em;
+    width: 52em;
+    position: absolute;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+
+    background-color: rgb(0, 0, 0,0.3);
+    z-index: 1;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border:4px solid #4f4b4b;
+    border-radius: 10px;
+}
+
+.main > .user-interface > .project-title {
+    height: 2em;
+    text-align: center;
+    font-family: 'Modak', cursive;
+    font-size: 2em;
+}
+
+.main > .user-interface-hidden {
+    opacity: 1;
+
+}
+
+
+.main > .settings-menu {
+    
+    font-size: 0px;
+    opacity: 1;
+    
+}
+
+.main > .settings-menu-changed {
+    position: absolute;
+    align-items: center;
+    align-content: center;
+
+
+
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    z-index: 1;
+    background-color: rgb(0,0,0,0.5);
+    height: 30em;
+    width: 25em;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 10 rgba(0,0,0,0.5);
+}
+
+
+.footer {
+    display: flex;
+    
+    justify-content: space-between;
+    flex-direction: column;
+    height: 14em;
+    transition: transform ease-out 2s;
+}
+
+.footer > .add-button{
+    flex:1;
+    align-self: center;
+    margin-top: 2em;
+    transition: transform ease-out .5s .3s;
+    max-height: 1em;
+}
+
+.footer > .add-button:hover{
+    transform: translateY(-1em);
+}
+
+.footer > .add-button > .add-button-image {
+    flex:1;
+    align-self: center;
+    margin-top: 4em;
+    
+}
