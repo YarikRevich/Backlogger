@@ -5,7 +5,9 @@ How to run?
 ----------
 
 Firstly you need to install packages written in "requirements.txt"
-To install them you have to write such command -pip3 install -r requirements.txt
+To install them you have to write such command:
+
+-pip3 install -r requirements.txt
 
 ________________________________________________________________________________
 
