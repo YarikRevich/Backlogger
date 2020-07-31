@@ -33,8 +33,11 @@ def random_image(*args) -> "Random Num":
 def media_path(image: str,*args) -> "Avatar":
     """Returns a path of user's avatar"""
     
-    path = image.split("/")[1]   
-    return f"/static/image/{path}"
+    try:
+        path = image.split("/")[1]   
+        return f"/static/image/{path}"
+    except IndexError:
+        pass
     
 @register.simple_tag(takes_context=True)
 def get_pdf(context,pk: int,*args) -> "PDF file":

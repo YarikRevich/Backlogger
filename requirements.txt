@@ -1,0 +1,12 @@
+cryptography==3.0
+Django==3.0.8
+django-grappelli==2.14.2
+django-ranged-response==0.2.0
+easy-thumbnails==2.7
+fpdf==1.7.2
+Pillow==7.2.0
+pycparser==2.20
+PyMySQL==0.10.0
+requests==2.24.0
+sqlparse==0.3.1
+urllib3==1.25.10
