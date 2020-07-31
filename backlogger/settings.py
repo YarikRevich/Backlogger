@@ -21,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w9@g7v+8+kkx2gg9zo89gkgx1dju@q9r#6)32o_-d42^3p87ao'
+SECRET_KEY = 'You wanted to get it,but no now)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["www.backloggerapp.com","backloggerapp.com","192.168.0.105"]
+ALLOWED_HOSTS = []
 
 SECURE_SSL_REDIRECT = False
 
