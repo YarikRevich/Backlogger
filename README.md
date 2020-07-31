@@ -14,6 +14,7 @@ ________________________________________________________________________________
 To run this web-application you need to run such command
 
 -python3 manage.py runserver (-It is if you work on Linux or MacOS-)
+
 -python manage.py runserver (-It is if you work on Windows-)
 
 So....enjoy it!
